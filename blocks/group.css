@@ -1,0 +1,19 @@
+.group {
+  margin: auto 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.group__text {
+  margin-left: 21px;
+  margin-right: auto;
+  font-size: 22px;
+  font-weight: 900;
+  line-height: 100%;
+}
+
+.group__imagen {
+  margin-right: 10px;
+}

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>"Alrededor de los EE.UU."</title>
+    <link rel="stylesheet" href="./pages/index.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="header">
+        <img
+          src="./images/Logo.png"
+          alt="Logo que dice: Around the U.S."
+          class="header__logo"
+        />
+        <div class="header__line"></div>
+      </header>
+      <main class="content">
+        <section class="profile">
+          <div class="profile__avatar">
+            <img
+              src="./images/profile.jpg"
+              alt="Perfil de un hombre viejo con gorro rojo"
+              class="profile__imagen"
+            />
+          </div>
+          <div class="profile__info">
+            <h1 class="profile__name" id="profileName">Jacques Cousteau</h1>
+            <button
+              type="button"
+              class="profile__editbutton"
+              onclick="abrirPopup()"
+            >
+              <img
+                src="./images/EditButton.png"
+                alt="Editar perfil"
+                class="profile__Lápiz"
+              />
+            </button>
+            <div class="popup" id="popupEditarPerfil">
+              <div class="popup__container">
+                <button class="popup__cerrar" onclick="cerrarPopup()">
+                  <img
+                    src="./images/Close Icon.png"
+                    alt=""
+                    class="popup__close"
+                  />
+                </button>
+                <h2 class="popup__text">Editar perfil</h2>
+                <form id="editarPerfilForm" class="popup__form">
+                  <input
+                    type="text"
+                    name="nombre"
+                    placeholder="Nombre"
+                    id="inputNombre"
+                    required
+                  />
+                  <input
+                    type="text"
+                    name="acerca"
+                    placeholder="Acerca de mí"
+                    id="inputAcerca"
+                    required
+                  />
+                  <button
+                    type="submit"
+                    class="popup__submit"
+                    id="submitButton"
+                    disabled
+                  >
+                    Guardar
+                  </button>
+                </form>
+              </div>
+            </div>
+            <h2 class="profile__acerca-de-mi" id="profileAcerca">Explorador</h2>
+          </div>
+          <button class="profile__AddButton">
+            <img src="./images/addButton.png" alt="" />
+          </button>
+        </section>
+        <section class="elements">
+          <div class="cards">
+            <img src="./images/imagen1.jpg" alt="" class="cards__imagen" />
+            <div class="group">
+              <h2 class="group__text">Valle de Yosemite</h2>
+              <img
+                src="./images/Group-corazón.svg"
+                alt=""
+                class="group__imagen"
+              />
+            </div>
+          </div>
+          <div class="cards">
+            <img src="./images/imagen2.png" alt="" class="cards__imagen" />
+            <div class="group">
+              <h2 class="group__text">Lago Louise</h2>
+              <img
+                src="./images/Group-corazón.svg"
+                alt=""
+                class="group__imagen"
+              />
+            </div>
+          </div>
+          <div class="cards">
+            <img src="./images/imagen3.png" alt="" class="cards__imagen" />
+            <div class="group">
+              <h2 class="group__text">Montañas Calvas</h2>
+              <img
+                src="./images/Group-corazón.svg"
+                alt=""
+                class="group__imagen"
+              />
+            </div>
+          </div>
+          <div class="cards">
+            <img src="./images/imagen4.png" alt="" class="cards__imagen" />
+            <div class="group">
+              <h2 class="group__text">Latemar</h2>
+              <img
+                src="./images/Group-corazón.svg"
+                alt=""
+                class="group__imagen"
+              />
+            </div>
+          </div>
+          <div class="cards">
+            <img src="./images/imagen5.png" alt="" class="cards__imagen" />
+            <div class="group">
+              <h2 class="group__text">Vanois National...</h2>
+              <img
+                src="./images/Group-corazón.svg"
+                alt=""
+                class="group__imagen"
+              />
+            </div>
+          </div>
+          <div class="cards">
+            <img src="./images/imagen6.png" alt="" class="cards__imagen" />
+            <div class="group">
+              <h2 class="group__text">Lago di Braies</h2>
+              <img
+                src="./images/Group-corazón.svg"
+                alt=""
+                class="group__imagen"
+              />
+            </div>
+          </div>
+        </section>
+      </main>
+      <footer class="footer">
+        <p class="footer__paragraph">&copy; 2025 Around The U.S.</p>
+      </footer>
+    </div>
+    <script src="./scripts/script.js"></script>
+  </body>
+</html>
