@@ -2,8 +2,8 @@ function abrirPopup() {
   const nombreActual = document.getElementById("profileName").textContent;
   const acercaActual = document.getElementById("profileAcerca").textContent;
 
-  document.getElementById("inputNombre").value = nombreActual;
-  document.getElementById("inputAcerca").value = acercaActual;
+  document.getElementById("inputNombre").value = nombreActual.trim();
+  document.getElementById("inputAcerca").value = acercaActual.trim();
 
   validateForm();
 
@@ -36,8 +36,8 @@ document
   .addEventListener("submit", function (e) {
     e.preventDefault();
 
-    const nuevoNombre = document.getElementById("inputNombre").value;
-    const nuevoAcerca = document.getElementById("inputAcerca").value;
+    const nuevoNombre = document.getElementById("inputNombre").value.trim();
+    const nuevoAcerca = document.getElementById("inputAcerca").value.trim();
 
     document.getElementById("profileName").textContent = nuevoNombre;
     document.getElementById("profileAcerca").textContent = nuevoAcerca;
