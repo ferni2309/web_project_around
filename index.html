@@ -30,151 +30,55 @@
             </h1>
             <button
               type="button"
-              class="profile__editbutton"
-              onclick="abrirPopup()"
+              class="profile__EditButton"
+              data-title="Editar perfil"
+              data-placeholder1="Nombre"
+              data-placeholder2="Acerca"
             >
-              <img
-                src="./images/EditButton.png"
-                alt="Editar perfil"
-                class="profile__Lápiz"
-              />
+              <img src="./images/EditButton.png" alt="Editar perfil" />
             </button>
-            <div class="popup" id="popupEditarPerfil">
-              <div class="popup__container">
-                <button class="popup__cerrar" onclick="cerrarPopup()">
-                  <img
-                    src="./images/Close-Icon.png"
-                    alt="Es una X que hace referencia a cerra la ventana de emergencia"
-                    class="popup__close"
-                  />
-                </button>
-                <h2 class="popup__text">Editar perfil</h2>
-                <form id="editarPerfilForm" class="popup__form">
-                  <input
-                    type="text"
-                    name="nombre"
-                    placeholder="Nombre"
-                    id="inputNombre"
-                    required
-                  />
-                  <input
-                    type="text"
-                    name="acerca"
-                    placeholder="Acerca de mí"
-                    id="inputAcerca"
-                    required
-                  />
-                  <button
-                    type="submit"
-                    class="popup__submit"
-                    id="submitButton"
-                    disabled
-                  >
-                    Guardar
-                  </button>
-                </form>
-              </div>
-            </div>
             <h2 class="profile__acerca-de-mi" id="profileAcerca">
               Tecnico Especializado
             </h2>
           </div>
-          <button class="profile__AddButton">
+          <button
+            type="button"
+            class="profile__AddButton"
+            data-title="Nuevo lugar"
+            data-placeholder1="Título"
+            data-placeholder2="Enlace a la imagen"
+          >
             <img
               src="./images/addButton.png"
               alt="Es un + que hace referencia a agregar"
             />
           </button>
-        </section>
-        <section class="elements">
-          <div class="cards">
-            <img
-              src="./images/imagen1.jpg"
-              alt="Paisaje"
-              class="cards__imagen"
-            />
-            <div class="group">
-              <h2 class="group__text">Valle de Yosemite</h2>
-              <img
-                src="./images/Group-corazón.svg"
-                alt="Paisaje"
-                class="group__imagen"
-              />
-            </div>
-          </div>
-          <div class="cards">
-            <img src="./images/imagen2.png" alt="" class="cards__imagen" />
-            <div class="group">
-              <h2 class="group__text">Lago Louise</h2>
-              <img
-                src="./images/Group-corazón.svg"
-                alt="Paisaje"
-                class="group__imagen"
-              />
-            </div>
-          </div>
-          <div class="cards">
-            <img
-              src="./images/imagen3.png"
-              alt="Paisaje"
-              class="cards__imagen"
-            />
-            <div class="group">
-              <h2 class="group__text">Montañas Calvas</h2>
-              <img
-                src="./images/Group-corazón.svg"
-                alt=""
-                class="group__imagen"
-              />
-            </div>
-          </div>
-          <div class="cards">
-            <img
-              src="./images/imagen4.png"
-              alt="Paisaje"
-              class="cards__imagen"
-            />
-            <div class="group">
-              <h2 class="group__text">Latemar</h2>
-              <img
-                src="./images/Group-corazón.svg"
-                alt=""
-                class="group__imagen"
-              />
-            </div>
-          </div>
-          <div class="cards">
-            <img
-              src="./images/imagen5.png"
-              alt="Paisaje"
-              class="cards__imagen"
-            />
-            <div class="group">
-              <h2 class="group__text">Vanois National...</h2>
-              <img
-                src="./images/Group-corazón.svg"
-                alt=""
-                class="group__imagen"
-              />
-            </div>
-          </div>
-          <div class="cards">
-            <img
-              src="./images/imagen6.png"
-              alt="Paisaje"
-              class="cards__imagen"
-            />
-            <div class="group">
-              <h2 class="group__text">Lago di Braies</h2>
-              <img
-                src="./images/Group-corazón.svg"
-                alt=""
-                class="group__imagen"
-              />
+          <div class="popup" id="popup">
+            <div class="popup__content">
+              <button class="popup__close" id="popup-close">
+                <img src="./images/Close-Icon.png" alt="Cierra el popup" />
+              </button>
+              <div class="popup__header">
+                <h2 id="popup-title"></h2>
+              </div>
+              <input type="text" id="input1" />
+              <input type="text" id="input2" />
+              <button class="popup__button" id="guardar">Guardar</button>
             </div>
           </div>
         </section>
+        <section class="elements"></section>
       </main>
+      <div class="image-popup" id="image-popup" style="display: none">
+        <div class="image-popup__overlay" id="image-popup-overlay"></div>
+        <div class="image-popup__content">
+          <button class="image-popup__close" id="image-popup-close">
+            <img src="./images/Close-Icon.png" alt="Cierra el popup" />
+          </button>
+          <img src="" alt="Imagen ampliada" id="image-popup-img" />
+          <p class="image-popup__caption" id="image-popup-caption"></p>
+        </div>
+      </div>
       <footer class="footer">
         <p class="footer__copyright">&copy; 2025 Around The U.S.</p>
       </footer>

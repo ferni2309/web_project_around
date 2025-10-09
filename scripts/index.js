@@ -1,46 +1,162 @@
-function abrirPopup() {
-  const nombreActual = document.getElementById("profileName").textContent;
-  const acercaActual = document.getElementById("profileAcerca").textContent;
+const popup = document.getElementById("popup");
+const popupTitle = document.getElementById("popup-title");
+const input1 = document.getElementById("input1");
+const input2 = document.getElementById("input2");
+const guardarButton = document.getElementById("guardar");
+const closeButton = document.getElementById("popup-close");
 
-  document.getElementById("inputNombre").value = nombreActual.trim();
-  document.getElementById("inputAcerca").value = acercaActual.trim();
+const profileName = document.getElementById("profileName");
+const profileAcerca = document.getElementById("profileAcerca");
+const cardsContainer = document.querySelector(".elements");
 
-  validateForm();
+let currentAction = "";
 
-  document.getElementById("popupEditarPerfil").classList.add("popup_opened");
+const imagePopup = document.getElementById("image-popup");
+const imagePopupImg = document.getElementById("image-popup-img");
+const imagePopupCaption = document.getElementById("image-popup-caption");
+const imagePopupClose = document.getElementById("image-popup-close");
+const imagePopupOverlay = document.getElementById("image-popup-overlay");
+
+const editButton = document.querySelector(".profile__EditButton");
+const addButton = document.querySelector(".profile__AddButton");
+
+function abrirPopup(button) {
+  popup.classList.add("popup--show");
+
+  const isEdit = button.classList.contains("profile__EditButton");
+  const isAdd = button.classList.contains("profile__AddButton");
+
+  currentAction = isEdit ? "edit" : isAdd ? "add" : "";
+
+  popupTitle.textContent = button.getAttribute("data-title") || "";
+  input1.value = "";
+  input2.value = "";
+
+  input1.placeholder = button.getAttribute("data-placeholder1") || "";
+  input2.placeholder = button.getAttribute("data-placeholder2") || "";
+
+  guardarButton.textContent = isEdit ? "Guardar" : "Crear";
 }
 
-function cerrarPopup() {
-  document.getElementById("popupEditarPerfil").classList.remove("popup_opened");
-}
+function crearTarjeta(name, link) {
+  const newCard = document.createElement("div");
+  newCard.classList.add("cards");
 
-function validateForm() {
-  const inputNombre = document.getElementById("inputNombre");
-  const inputAcerca = document.getElementById("inputAcerca");
-  const submitButton = document.getElementById("submitButton");
+  const deleteBtn = document.createElement("button");
+  deleteBtn.classList.add("elements__delete");
+  deleteBtn.addEventListener("click", () => newCard.remove());
 
-  if (inputNombre.value.trim() !== "" && inputAcerca.value.trim() !== "") {
-    submitButton.classList.add("enabled");
-    submitButton.disabled = false;
-  } else {
-    submitButton.classList.remove("enabled");
-    submitButton.disabled = true;
-  }
-}
+  const image = document.createElement("img");
+  image.classList.add("cards__imagen");
+  image.src = link;
+  image.alt = name;
 
-document.getElementById("inputNombre").addEventListener("input", validateForm);
-document.getElementById("inputAcerca").addEventListener("input", validateForm);
+  const group = document.createElement("div");
+  group.classList.add("group");
 
-document
-  .getElementById("editarPerfilForm")
-  .addEventListener("submit", function (e) {
-    e.preventDefault();
+  const title = document.createElement("h2");
+  title.classList.add("group__text");
+  title.textContent = name;
 
-    const nuevoNombre = document.getElementById("inputNombre").value.trim();
-    const nuevoAcerca = document.getElementById("inputAcerca").value.trim();
+  const heart = document.createElement("img");
+  heart.classList.add("group__imagen");
+  heart.src = "./images/Group-corazón.svg";
+  heart.alt = "Like";
 
-    document.getElementById("profileName").textContent = nuevoNombre;
-    document.getElementById("profileAcerca").textContent = nuevoAcerca;
-
-    cerrarPopup();
+  heart.addEventListener("click", () => {
+    const isLiked = heart.classList.toggle("liked");
+    heart.src = isLiked
+      ? "./images/Group-corazón-Active.svg"
+      : "./images/Group-corazón.svg";
   });
+
+  group.appendChild(title);
+  group.appendChild(heart);
+  newCard.appendChild(deleteBtn);
+  newCard.appendChild(image);
+  newCard.appendChild(group);
+
+  const container = document.querySelector(".elements");
+  container.prepend(newCard);
+}
+
+const initialCards = [
+  {
+    name: "Valle de Yosemite",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/yosemite.jpg",
+  },
+  {
+    name: "Lago Louise",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lake-louise.jpg",
+  },
+  {
+    name: "Montañas Calvas",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/bald-mountains.jpg",
+  },
+  {
+    name: "Latemar",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/latemar.jpg",
+  },
+  {
+    name: "Parque Nacional de la Vanoise",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/vanoise.jpg",
+  },
+  {
+    name: "Lago di Braies",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lago.jpg",
+  },
+];
+
+initialCards.forEach((card) => {
+  crearTarjeta(card.name, card.link);
+});
+
+guardarButton.addEventListener("click", () => {
+  const val1 = input1.value.trim();
+  const val2 = input2.value.trim();
+
+  if (currentAction === "edit") {
+    profileName.textContent = val1;
+    profileAcerca.textContent = val2;
+  } else if (currentAction === "add") {
+    crearTarjeta(val1, val2);
+  }
+
+  popup.classList.remove("popup--show");
+});
+
+document.querySelector(".elements").addEventListener("click", (e) => {
+  const clickedImg = e.target.closest(".cards__imagen");
+  if (clickedImg) {
+    const card = clickedImg.closest(".cards");
+    const title = card.querySelector(".group__text").textContent;
+
+    imagePopupImg.src = clickedImg.src;
+    imagePopupImg.alt = clickedImg.alt;
+    imagePopupCaption.textContent = title;
+
+    imagePopup.style.display = "flex";
+    document.body.style.overflow = "hidden";
+  }
+});
+
+const cerrarPopupImagen = () => {
+  imagePopup.style.display = "none";
+  document.body.style.overflow = "";
+};
+
+imagePopupClose.addEventListener("click", cerrarPopupImagen);
+imagePopupOverlay.addEventListener("click", cerrarPopupImagen);
+
+editButton.addEventListener("click", () => abrirPopup(editButton));
+addButton.addEventListener("click", () => abrirPopup(addButton));
+
+closeButton.addEventListener("click", () => {
+  popup.classList.remove("popup--show");
+});
+
+popup.addEventListener("click", (event) => {
+  if (event.target === popup) {
+    popup.classList.remove("popup--show");
+  }
+});

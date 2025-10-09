@@ -17,3 +17,8 @@
 .group__imagen {
   margin-right: 10px;
 }
+
+.group__imagen:hover {
+  cursor: pointer;
+  opacity: 0.5;
+}

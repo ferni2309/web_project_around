@@ -54,18 +54,13 @@
   overflow: hidden;
 }
 
-.profile__editbutton {
+.profile__EditButton {
   padding: 0;
   width: 24px;
   height: 24px;
+  object-fit: cover;
   background-color: transparent;
   border: 1px solid #fff;
-}
-
-.profile__Lápiz {
-  width: 10px;
-  height: 10px;
-  object-fit: cover;
 }
 
 .profile__AddButton {
@@ -74,6 +69,16 @@
   background-color: transparent;
   border: 2px solid #f1f1f1;
   margin-left: auto;
+}
+
+.profile__EditButton:hover {
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+.profile__AddButton:hover {
+  cursor: pointer;
+  opacity: 0.5;
 }
 
 @media screen and (max-width: 768px) {
