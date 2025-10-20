@@ -18,6 +18,8 @@ Flexbox/Grid para diseño responsivo
 
 Manejo de eventos y ventanas emergentes en JavaScript
 
-3.-Esta es una página interactiva en la que los usuarios pueden añadir, eliminar o dar "me gusta" a las fotos aunque por el momento solo podemos editar el nombre y la profesión.
+3.-Esta es una página interactiva en la que los usuarios pueden añadir, eliminar o dar "me gusta" a las fotos.
+
+4.-Tambíen podemos visualizar en los formularios mensajes de error, esto para que indicar a la persona los datos y la cantidad de datos que debe ingresar.
 
 https://github.com/ferni2309/web_project_around.git
