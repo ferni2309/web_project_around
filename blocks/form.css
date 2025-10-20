@@ -1,0 +1,14 @@
+.form__input.touched:invalid {
+  border-bottom: 1px solid red;
+}
+
+.form__input--error {
+  border: 2px solid red;
+}
+
+.form__input-error {
+  color: red;
+  font-size: 12px;
+  margin-top: auto;
+  display: block;
+}

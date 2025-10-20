@@ -12,10 +12,18 @@
   padding: 13.66px 0 18.49px;
   background-color: #000;
   color: #fff;
-  border: none;
   border-radius: 2px;
   cursor: pointer;
   width: 100%;
+}
+
+.popup__button_disabled {
+  color: #000;
+  opacity: 0.5;
+  background-color: transparent;
+  border-color: #000;
+  cursor: not-allowed;
+  pointer-events: none;
 }
 
 .popup__close {

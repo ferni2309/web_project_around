@@ -20,6 +20,12 @@ const imagePopupOverlay = document.getElementById("image-popup-overlay");
 const editButton = document.querySelector(".profile__EditButton");
 const addButton = document.querySelector(".profile__AddButton");
 
+function manejarEscapeFormulario(event) {
+  if (event.key === "Escape") {
+    cerrarPopupFormulario();
+  }
+}
+
 function abrirPopup(button) {
   popup.classList.add("popup--show");
 
@@ -36,6 +42,39 @@ function abrirPopup(button) {
   input2.placeholder = button.getAttribute("data-placeholder2") || "";
 
   guardarButton.textContent = isEdit ? "Guardar" : "Crear";
+
+  document.addEventListener("keydown", manejarEscapeFormulario);
+}
+
+function cerrarPopupFormulario() {
+  popup.classList.remove("popup--show");
+  document.removeEventListener("keydown", manejarEscapeFormulario);
+}
+
+function manejarEscapeImagen(event) {
+  if (event.key === "Escape") {
+    cerrarPopupImagen();
+  }
+}
+
+function abrirPopupImagen(imgElement) {
+  const card = imgElement.closest(".cards");
+  const title = card.querySelector(".group__text").textContent;
+
+  imagePopupImg.src = imgElement.src;
+  imagePopupImg.alt = imgElement.alt;
+  imagePopupCaption.textContent = title;
+
+  imagePopup.style.display = "flex";
+  document.body.style.overflow = "hidden";
+
+  document.addEventListener("keydown", manejarEscapeImagen);
+}
+
+function cerrarPopupImagen() {
+  imagePopup.style.display = "none";
+  document.body.style.overflow = "";
+  document.removeEventListener("keydown", manejarEscapeImagen);
 }
 
 function crearTarjeta(name, link) {
@@ -76,8 +115,7 @@ function crearTarjeta(name, link) {
   newCard.appendChild(image);
   newCard.appendChild(group);
 
-  const container = document.querySelector(".elements");
-  container.prepend(newCard);
+  cardsContainer.prepend(newCard);
 }
 
 const initialCards = [
@@ -107,11 +145,11 @@ const initialCards = [
   },
 ];
 
-initialCards.forEach((card) => {
-  crearTarjeta(card.name, card.link);
-});
+initialCards.forEach((card) => crearTarjeta(card.name, card.link));
 
-guardarButton.addEventListener("click", () => {
+guardarButton.addEventListener("click", (e) => {
+  e.preventDefault();
+
   const val1 = input1.value.trim();
   const val2 = input2.value.trim();
 
@@ -122,41 +160,26 @@ guardarButton.addEventListener("click", () => {
     crearTarjeta(val1, val2);
   }
 
-  popup.classList.remove("popup--show");
+  cerrarPopupFormulario();
 });
-
-document.querySelector(".elements").addEventListener("click", (e) => {
-  const clickedImg = e.target.closest(".cards__imagen");
-  if (clickedImg) {
-    const card = clickedImg.closest(".cards");
-    const title = card.querySelector(".group__text").textContent;
-
-    imagePopupImg.src = clickedImg.src;
-    imagePopupImg.alt = clickedImg.alt;
-    imagePopupCaption.textContent = title;
-
-    imagePopup.style.display = "flex";
-    document.body.style.overflow = "hidden";
-  }
-});
-
-const cerrarPopupImagen = () => {
-  imagePopup.style.display = "none";
-  document.body.style.overflow = "";
-};
-
-imagePopupClose.addEventListener("click", cerrarPopupImagen);
-imagePopupOverlay.addEventListener("click", cerrarPopupImagen);
 
 editButton.addEventListener("click", () => abrirPopup(editButton));
 addButton.addEventListener("click", () => abrirPopup(addButton));
 
-closeButton.addEventListener("click", () => {
-  popup.classList.remove("popup--show");
-});
+closeButton.addEventListener("click", cerrarPopupFormulario);
 
 popup.addEventListener("click", (event) => {
   if (event.target === popup) {
-    popup.classList.remove("popup--show");
+    cerrarPopupFormulario();
   }
 });
+
+cardsContainer.addEventListener("click", (e) => {
+  const clickedImg = e.target.closest(".cards__imagen");
+  if (clickedImg) {
+    abrirPopupImagen(clickedImg);
+  }
+});
+
+imagePopupClose.addEventListener("click", cerrarPopupImagen);
+imagePopupOverlay.addEventListener("click", cerrarPopupImagen);

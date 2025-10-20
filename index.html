@@ -61,9 +61,36 @@
               <div class="popup__header">
                 <h2 id="popup-title"></h2>
               </div>
-              <input type="text" id="input1" />
-              <input type="text" id="input2" />
-              <button class="popup__button" id="guardar">Guardar</button>
+              <form class="form">
+                <label class="form__field">
+                  <input
+                    type="text"
+                    id="input1"
+                    class="form__input"
+                    required
+                    minlength="2"
+                    maxlength="40"
+                  />
+                  <span class="form__input-error input1-error"></span>
+                  <input
+                    type="text"
+                    id="input2"
+                    class="form__input"
+                    required
+                    minlength="2"
+                    maxlength="200"
+                  />
+                  <span class="form__input-error input2-error"></span>
+                </label>
+                <button
+                  type="button"
+                  class="popup__button"
+                  id="guardar"
+                  disabled
+                >
+                  Guardar
+                </button>
+              </form>
             </div>
           </div>
         </section>
@@ -84,5 +111,6 @@
       </footer>
     </div>
     <script src="./scripts/index.js"></script>
+    <script src="./scripts/validate.js"></script>
   </body>
 </html>
